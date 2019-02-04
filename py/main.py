@@ -18,12 +18,13 @@ def getAir(output):
     #   - Facility
     #   - Instance ID of CO2 sensor
     #   - Instance ID of temperature sensor
-    df = pd.read_csv('../csv/ahs_air.csv', na_filter=False, comment='#')
+    df = pd.read_csv('../csv/ahs_air-Ignore.csv', na_filter=False, comment='#')
     # Iterate over the rows of the dataframe, getting temperature and CO2 values for each location
     for index, row in df.iterrows():
         # Retrieve data
-        temp_value, temp_units = building_data_requests.get_value(row['Facility'], row['Temperature'])
-        co2_value, co2_units = building_data_requests.get_value(row['Facility'], row['CO2'])
+        if row['Ignore']!='TRUE':
+            temp_value, temp_units = building_data_requests.get_value(row['Facility'], row['Temperature'])
+            co2_value, co2_units = building_data_requests.get_value(row['Facility'], row['CO2'])
 
         # Prepare to print
         temp_value = int(temp_value) if isinstance(temp_value, numbers.Number) else ''
@@ -33,15 +34,20 @@ def getAir(output):
 
         # Output CSV format
         if output.lower() == "all":
-            temps += ('{0},{1},{2}'.format(row['Label'], temp_value , co2_value)) + '\n'
+            if row['Ignore'] != 'TRUE':
+                temps += ('{0},{1},{2}'.format(row['Label'], temp_value , co2_value)) + '\n'
         elif output.lower() == "co2":
-            temps += (co2_value) + ','
+            if row['Ignore'] != 'TRUE':
+                temps += (co2_value) + ','
         elif output.lower() == "temp":
-            temps += (temp_value) + ','
+            if row['Ignore'] != 'TRUE':
+                temps += (temp_value) + ','
         elif output.lower() == "location":
-            temps += (row['Label']) + ','
+            if row['Ignore'] != 'TRUE':
+                temps += (row['Label']) + ','
         else:
-            temps += ('{0},{1},{2},{3},{4}'.format(row['Label'], temp_value, temp_units, co2_value, co2_units)) + '\n'
+            if row['Ignore'] != 'TRUE':
+                temps += ('{0},{1},{2},{3},{4}'.format(row['Label'], temp_value, temp_units, co2_value, co2_units)) + '\n'
 
 
     # Report elapsed time
@@ -64,7 +70,7 @@ def getBulkAir(output):
     #   - Facility
     #   - Instance ID of CO2 sensor
     #   - Instance ID of temperature sensor
-    df = pd.read_csv('../csv/ahs_air.csv', na_filter=False, comment='#')
+    df = pd.read_csv('../csv/ahs_air-Ignore.csv', na_filter=False, comment='#')
 
     # Initialize empty bulk request
     bulk_rq = []
@@ -73,10 +79,11 @@ def getBulkAir(output):
     for index, row in df.iterrows():
 
         # Append facility/instance pairs to bulk request
-        if row['Temperature']:
-            bulk_rq.append({'facility': row['Facility'], 'instance': row['Temperature']})
-        if row['CO2']:
-            bulk_rq.append({'facility': row['Facility'], 'instance': row['CO2']})
+        if row['Ignore'] != 'TRUE':
+            if row['Temperature']:
+                bulk_rq.append({'facility': row['Facility'], 'instance': row['Temperature']})
+            if row['CO2']:
+                bulk_rq.append({'facility': row['Facility'], 'instance': row['CO2']})
 
     # Issue get-bulk request
     bulk_rsp = building_data_requests.get_bulk(bulk_rq)
@@ -114,15 +121,20 @@ def getBulkAir(output):
                 co2_units = rsp['units']
         # Output CSV format
         if output.lower() == "all":
-            temps += ('{0},{1},{2}'.format(row['Label'], temp_value , co2_value)) + '\n'
+            if row['Ignore'] != 'TRUE':
+                temps += ('{0},{1},{2}'.format(row['Label'], temp_value , co2_value)) + '\n'
         elif output.lower() == "co2":
-            temps += str(co2_value) + ','
+            if row['Ignore'] != 'TRUE':
+                temps += str(co2_value) + ','
         elif output.lower() == "temp":
-            temps += str(temp_value) + ','
+            if row['Ignore'] != 'TRUE':
+                temps += str(temp_value) + ','
         elif output.lower() == "location":
-            temps += (row['Label']) + ','
+            if row['Ignore'] != 'TRUE':
+                temps += (row['Label']) + ','
         else:
-            temps += ('{0},{1},{2},{3},{4}'.format(row['Label'], temp_value, temp_units, co2_value, co2_units)) + '\n'
+            if row['Ignore'] != 'TRUE':
+                temps += ('{0},{1},{2},{3},{4}'.format(row['Label'], temp_value, temp_units, co2_value, co2_units)) + '\n'
 
     # Report elapsed time
     elapsed_time = round((time.time() - start_time) * 1000) / 1000
@@ -326,7 +338,7 @@ def endWeek():
     f.write("TEMPERATURE"+"\n\n"+"Top 5 Temp: "+getTop("../data/top7temp.csv", 5) + "\n" +"Bottom 5 Temp: "+getTop("../data/bottom7temp.csv", 5)+"\n"+"CARBON DIOXIDE"+"\n\n"+"Bottom 5 CO2: "+getTop("../data/bottom7co2.csv", 5)+"\n"+"Top 5 Temp:"+getTop("../data/top7co2.csv", 5))
     clearData()
 
-def homeTest():
+def quickTest():
     dataRecorder()
     dataRecorder()
     dataRecorder()
