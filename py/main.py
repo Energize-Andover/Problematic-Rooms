@@ -335,7 +335,7 @@ def endDay():
 def endWeek():
     today = datetime.date.today().strftime("_%B_%d_%Y_")
     f = open("../reports/report"+today+".txt", "w+")
-    f.write("TEMPERATURE"+"\n\n"+"Top 5 Temp: "+getTop("../data/top7temp.csv", 5) + "\n" +"Bottom 5 Temp: "+getTop("../data/bottom7temp.csv", 5)+"\n"+"CARBON DIOXIDE"+"\n\n"+"Bottom 5 CO2: "+getTop("../data/bottom7co2.csv", 5)+"\n"+"Top 5 Temp:"+getTop("../data/top7co2.csv", 5))
+    f.write("Date:"+today+"\n\n"+"TEMPERATURE"+"\n\n"+"Top 5 Temp: "+getTop("../data/top7temp.csv", 5) + "\n" +"Bottom 5 Temp: "+getTop("../data/bottom7temp.csv", 5)+"\n"+"CARBON DIOXIDE"+"\n\n"+"Bottom 5 CO2: "+getTop("../data/bottom7co2.csv", 5)+"\n"+"Top 5 Temp:"+getTop("../data/top7co2.csv", 5))
     clearData()
 
 def quickTest():
