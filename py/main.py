@@ -371,28 +371,28 @@ def quickTest():
 schedule.every().monday.at("08:00").do(dataRecorder)
 schedule.every().monday.at("11:00").do(dataRecorder)
 schedule.every().monday.at("14:00").do(dataRecorder)
-schedule.every().monday.at("15:00").do(endDay)
+schedule.every().monday.at("14:30").do(endDay)
 
 schedule.every().tuesday.at("08:00").do(dataRecorder)
 schedule.every().tuesday.at("11:00").do(dataRecorder)
 schedule.every().tuesday.at("14:00").do(dataRecorder)
-schedule.every().tuesday.at("15:00").do(endDay)
+schedule.every().tuesday.at("14:30").do(endDay)
 
 schedule.every().wednesday.at("08:00").do(dataRecorder)
 schedule.every().wednesday.at("11:00").do(dataRecorder)
 schedule.every().wednesday.at("14:00").do(dataRecorder)
-schedule.every().wednesday.at("15:00").do(endDay)
+schedule.every().wednesday.at("14:30").do(endDay)
 
 schedule.every().thursday.at("08:00").do(dataRecorder)
 schedule.every().thursday.at("11:00").do(dataRecorder)
 schedule.every().thursday.at("14:00").do(dataRecorder)
-schedule.every().thursday.at("15:00").do(endDay)
+schedule.every().thursday.at("14:30").do(endDay)
 
 schedule.every().friday.at("08:00").do(dataRecorder)
 schedule.every().friday.at("11:00").do(dataRecorder)
 schedule.every().friday.at("14:00").do(dataRecorder)
-schedule.every().friday.at("15:00").do(endDay)
-schedule.every().friday.at("16:00").do(endWeek)
+schedule.every().friday.at("14:30").do(endDay)
+schedule.every().friday.at("15:00").do(endWeek)
 
 while True:
     schedule.run_pending()
