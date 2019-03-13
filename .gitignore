@@ -65,3 +65,4 @@ py/__pycache__/
 venv/*
 s/scalar/timedelta/__pycache__/
 .idea/*
+.python-version
