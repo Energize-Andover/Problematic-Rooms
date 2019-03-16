@@ -1,8 +1,11 @@
+__________________________________________________________________________________
 TEMPERATURE
 
-Top 5 Temp: ,CADD & Graphics,CC Multizone ZN2,CC Multizone ZN3,Kit Conf,Kit Office
-Bottom 5 Temp: ,Outside Air,207,Field House NW,138,351
+    Top 5 Temp: CADD & Graphics,CC Multizone ZN2,CC Multizone ZN3,Kit Conf,Kit Office
+    Bottom 5 Temp: Outside Air,207,Field House NW,138,351
+__________________________________________________________________________________
 CARBON DIOXIDE
 
-Bottom 5 CO2: ,211,301,222,CC Multizone ZN1,232
-Top 5 Temp:,345,343,Field House NW,323,Field House SW
+    Bottom 5 CO2: 211,301,222,CC Multizone ZN1,232
+    Top 5 Temp: 345,343,Field House NW,323,Field House SW
+__________________________________________________________________________________
