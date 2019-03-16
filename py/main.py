@@ -337,6 +337,10 @@ def endWeek():
     f = open("../reports/report"+today+".txt", "w+")
     f.write("Date:"+today+"\n\n"+"__________________________________________________________________________________\nTEMPERATURE"+"\n\n"+"Top 5 Temp: "+getTop("../data/top7temp.csv", 5) + "\n" +"Bottom 5 Temp: "+getTop("../data/bottom7temp.csv", 5)+"\n__________________________________________________________________________________\n"+"CARBON DIOXIDE"+"\n\n"+"Bottom 5 CO2: "+getTop("../data/bottom7co2.csv", 5)+"\n"+"Top 5 Temp:"+getTop("../data/top7co2.csv", 5)+"\n__________________________________________________________________________________\n")
     clearData()
+    g = open("../reports/report"+today+".html", "w+")
+    g.write("Date:" + today + "<br /><br />\n\n" + "__________________________________________________________________________________\nTEMPERATURE" + "<br /><br />\n\n" + "Top 5 Temp: " + getTop("../data/top7temp.csv", 5) + "<br />\n" + "Bottom 5 Temp: " + getTop("../data/bottom7temp.csv",5) + "<br />\n__________________________________________________________________________________<br />\n" + "CARBON DIOXIDE" + "<br /><br />\n\n" + "Bottom 5 CO2: " + getTop("../data/bottom7co2.csv", 5) + "<br />\n" + "Top 5 Temp:" + getTop("../data/top7co2.csv",5) + "<br />\n__________________________________________________________________________________<br />\n")
+    clearData()
+
 
 def quickTest():
     dataRecorder()
